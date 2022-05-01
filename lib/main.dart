@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample/screens/Registration.dart';
 import 'package:sample/screens/loginscreen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: Registration(),
       debugShowCheckedModeBanner: false,
     );
   }
