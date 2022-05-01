@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,13 +71,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: TextFormField(
-                decoration: InputDecoration(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Color(0xffF4F4F4),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 10),
                     hintText: 'eg :James@gmail.com',
-                    fillColor: Color.fromARGB(255, 236, 232, 232),
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                    border: InputBorder.none,
+                  ),
+                ),
               ),
             ),
             const SizedBox(
@@ -101,14 +104,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    hintText: 'password here',
-                    fillColor: Color.fromARGB(255, 236, 232, 232),
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Color(0xffF4F4F4),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 10),
+                    hintText: 'Password here',
+                    border: InputBorder.none,
+                  ),
+                ),
               ),
             ),
             const SizedBox(
@@ -124,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text('sign in'),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.deepOrange),
+                          MaterialStateProperty.all(Color(0xffFF4400)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
@@ -133,18 +139,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   )),
             ),
             const SizedBox(
-              height: 10,
+              height: 18,
             ),
             const Center(
-                child: Text(
-              'forgot password?',
-              style: TextStyle(
-                  color: Colors.deepOrange,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16),
+                child: TextButton(
+              onPressed: null,
+              child: Text(
+                'forgot password?',
+                style: TextStyle(
+                    color: Color(0xffFF4400),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16),
+              ),
             )),
             const SizedBox(
-              height: 45,
+              height: 30,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 45),
@@ -154,12 +163,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Don’t have an account? ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
-                  Text(
-                    'Register now',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                      color: Colors.deepOrange,
+                  TextButton(
+                    onPressed: null,
+                    child: Text(
+                      'Register now',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: Color(0xffFF4400),
+                      ),
                     ),
                   )
                 ],
