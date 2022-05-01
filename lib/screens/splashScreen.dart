@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sample/screens/MainScreen.dart';
+import 'package:sample/screens/loginscreen.dart';
+
+import '../main.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({Key? key}) : super(key: key);
@@ -19,21 +22,23 @@ class _splashScreenState extends State<splashScreen> {
   _navigatehome() async {
     await Future.delayed(Duration(seconds: 1));
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MainScreen()));
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
-    double hgth = MediaQuery.of(context).size.height;
     double wdth = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: Container(
-        height: hgth,
-        width: wdth,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('lib/images/splash.png'), fit: BoxFit.fill)),
+    double hgth = MediaQuery.of(context).size.height;
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          height: hgth,
+          width: wdth,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('lib/images/splash.png'),
+                  fit: BoxFit.fill)),
+        ),
       ),
     );
   }

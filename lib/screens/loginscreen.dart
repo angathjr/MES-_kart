@@ -2,6 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/main.dart';
+import 'package:sample/screens/MainScreen.dart';
+import 'package:sample/screens/Registration.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    double wdth = MediaQuery.of(context).size.width;
+    double hgth = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -21,9 +26,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'lib/images/title.png',
-              width: double.infinity,
+            Container(
+              width: wdth,
+              height: hgth / 3,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('lib/images/title.png'),
+                      fit: BoxFit.fill)),
             ),
             const SizedBox(height: 30),
             Padding(
@@ -126,7 +135,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MainScreen()));
+                    },
                     child: const Text('sign in'),
                     style: ButtonStyle(
                       backgroundColor:
@@ -157,14 +171,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Don’t have an account? ',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 TextButton(
-                  onPressed: null,
-                  child: Text(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Registration()));
+                  },
+                  child: const Text(
                     'Register now',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,

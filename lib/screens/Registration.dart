@@ -13,6 +13,8 @@ class Registration extends StatefulWidget {
 class _LoginScreenState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
+    double wdth = MediaQuery.of(context).size.width;
+    double hgth = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -21,9 +23,13 @@ class _LoginScreenState extends State<Registration> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'lib/images/title.png',
-              width: double.infinity,
+            Container(
+              width: wdth,
+              height: hgth / 3,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('lib/images/title.png'),
+                      fit: BoxFit.fill)),
             ),
             const SizedBox(height: 30),
             Padding(
@@ -157,7 +163,7 @@ class _LoginScreenState extends State<Registration> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text('sign in'),
+                    child: const Text('sign up'),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xffFF4400)),
@@ -173,14 +179,16 @@ class _LoginScreenState extends State<Registration> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Already have an account? ',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 TextButton(
-                  onPressed: null,
-                  child: Text(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
                     'Sign in',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
