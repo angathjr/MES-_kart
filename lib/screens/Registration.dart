@@ -115,6 +115,7 @@ class _LoginScreenState extends State<Registration> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
                     hintText: 'Password here',
@@ -147,6 +148,7 @@ class _LoginScreenState extends State<Registration> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
                     hintText: 'Password here',
@@ -163,7 +165,9 @@ class _LoginScreenState extends State<Registration> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text('sign up'),
+                    child: const Text('Sign up',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 16)),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xffFF4400)),

@@ -119,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
                     hintText: 'Password here',
@@ -142,7 +143,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           MaterialPageRoute(
                               builder: (context) => MainScreen()));
                     },
-                    child: const Text('sign in'),
+                    child: const Text(
+                      'Sign in',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    ),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xffFF4400)),
@@ -162,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProductDetails()));
               },
-              child: Text(
+              child: const Text(
                 'forgot password?',
                 style: TextStyle(
                     color: Color(0xffFF4400),
