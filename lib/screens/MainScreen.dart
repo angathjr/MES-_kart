@@ -6,7 +6,9 @@ import 'package:sample/screens/ProfileScreen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
+
   static ValueNotifier<int> indexnotify = ValueNotifier(0);
+
   final pages = const [HomeScreen(), MyOrderScreen(), ProfileScreen()];
 
   @override
