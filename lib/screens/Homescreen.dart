@@ -37,9 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    const Flexible(
+                    Flexible(
                         child: IconButton(
-                      onPressed: null,
+                      onPressed: () {},
                       icon: Icon(
                         Icons.search,
                         color: Color(0xffFF4400),
@@ -49,6 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 22,
+            )
           ],
         ),
       )),
