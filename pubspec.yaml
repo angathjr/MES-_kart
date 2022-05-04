@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+
   google_fonts: ^2.3.2
 
 dev_dependencies:
@@ -58,6 +59,9 @@ flutter:
     - lib/images/image1.png
     - lib/images/loading.png
     - lib/images/purchase.png
+    - lib/images/img2.png
+    - lib/images/img3.png
+    - lib/images/img4.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
