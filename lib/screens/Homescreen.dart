@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    _tabcontroller = TabController(length: 4, vsync: this);
+    _tabcontroller = TabController(length: 4, vsync: this, initialIndex: 0);
   }
 
   @override
@@ -32,34 +32,24 @@ class _HomeScreenState extends State<HomeScreen>
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 30, 10, 20),
-              child: Container(
-                width: wdth,
-                decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: wdth * 0.78,
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 10),
-                          hintText: 'Search for paintings, cloths and more',
-                          border: InputBorder.none,
-                        ),
-                      ),
+              padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10),
+                  hintText: 'Search for paintings, cloths and more',
+                  filled: true,
+                  fillColor: Color(0xffF4F4F4),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: GestureDetector(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.search,
+                      color: Color(0xffFF4400),
                     ),
-                    Flexible(
-                        child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search,
-                        color: Color(0xffFF4400),
-                      ),
-                    ))
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -69,6 +59,9 @@ class _HomeScreenState extends State<HomeScreen>
             Expanded(
               flex: 0,
               child: TabBar(
+                  onTap: (index) {
+                    int updatedindex = index;
+                  },
                   indicator: ShapeDecoration(
                       color: Colors.deepOrange,
                       shape: RoundedRectangleBorder(

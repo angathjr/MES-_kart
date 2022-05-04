@@ -1,16 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/products/products.dart';
 
-class ProductDetails extends StatefulWidget {
-  const ProductDetails({Key? key}) : super(key: key);
+class ProductDetails extends StatelessWidget {
+  final Product product;
+  const ProductDetails({Key? key, required this.product}) : super(key: key);
 
-  @override
-  State<ProductDetails> createState() => _ProductDetailsState();
-}
-
-class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,10 +34,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Container(
                   width: double.infinity,
                   child: ListTile(
-                    leading: Image.asset(
-                      'lib/images/image1.png',
-                    ),
-                    title: Text('Lady home wallpaper'),
+                    leading: Image(image: AssetImage(product.image)),
+                    title: Text(product.title),
                     subtitle: Container(
                       child: Text('item description'),
                     ),

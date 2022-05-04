@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sample/products/products.dart';
-import 'package:sample/widgets/card.dart';
+import 'package:sample/screens/ProductDetails.dart';
+import 'package:sample/widgets/ItemCard.dart';
 
 class craftsCategory extends StatelessWidget {
   const craftsCategory({Key? key}) : super(key: key);
@@ -22,6 +23,11 @@ class craftsCategory extends StatelessWidget {
               crossAxisSpacing: 20),
           itemBuilder: (context, index) => ItemCard(
             product: products[index],
+            press: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetails(product: products[index]))),
           ),
         ),
       ),

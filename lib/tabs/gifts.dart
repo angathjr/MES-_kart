@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample/widgets/card.dart';
+import 'package:sample/screens/ProductDetails.dart';
+import 'package:sample/widgets/ItemCard.dart';
 
 import '../products/products.dart';
 
@@ -22,6 +23,11 @@ class GiftCategory extends StatelessWidget {
               crossAxisSpacing: 20),
           itemBuilder: (context, index) => ItemCard(
             product: products[index],
+            press: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetails(product: products[index]))),
           ),
         ),
       ),
