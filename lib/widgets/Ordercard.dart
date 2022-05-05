@@ -52,8 +52,8 @@ class ListCard extends StatelessWidget {
             )
           ],
         ),
-        Divider(
-          color: Colors.grey,
+        const Divider(
+          color: Color(0xffEDEDED),
         )
       ],
     ));
