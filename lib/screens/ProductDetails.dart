@@ -197,6 +197,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
             ),
-            bottomSheet: const ConfirmButton()));
+            bottomNavigationBar: const ConfirmButton()));
   }
 }

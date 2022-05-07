@@ -157,14 +157,11 @@ class _ProductInfoState extends State<ProductInfo> {
                   style: GoogleFonts.lato(
                       fontSize: 16, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
-                  height: 100,
-                )
               ],
             ),
           ),
         ),
-        bottomSheet: BuyNowButton(
+        bottomNavigationBar: BuyNowButton(
           itemindex: widget.itemindex,
           product: widget.product,
         ),

@@ -7,8 +7,7 @@ class ConfirmButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-        child: Container(
+    return Container(
       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
       height: 60,
       width: double.infinity,
@@ -26,6 +25,6 @@ class ConfirmButton extends StatelessWidget {
           )),
         ),
       ),
-    ));
+    );
   }
 }

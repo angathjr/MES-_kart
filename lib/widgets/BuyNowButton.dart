@@ -16,8 +16,7 @@ class BuyNowButton extends StatefulWidget {
 class _BuyNowButtonState extends State<BuyNowButton> {
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-        child: Container(
+    return Container(
       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
       height: 60,
       width: double.infinity,
@@ -42,6 +41,6 @@ class _BuyNowButtonState extends State<BuyNowButton> {
           )),
         ),
       ),
-    ));
+    );
   }
 }
