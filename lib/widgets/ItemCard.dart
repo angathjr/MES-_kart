@@ -15,20 +15,23 @@ class ItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(16)),
-              child: Image.asset(product.image),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(16)),
+                child: Image.asset(
+                  product.image,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(product.title),
-          ),
+          Text(product.title),
           Text('description'),
-          Text('\$ ${product.price}')
+          Text('₹ ${product.price}')
         ],
       ),
     );

@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sample/products/products.dart';
+import 'package:sample/screens/ProductDetails.dart';
 
-class BottomButton extends StatelessWidget {
-  const BottomButton({
-    Key? key,
-  }) : super(key: key);
+class BuyNowButton extends StatefulWidget {
+  final Product product;
+  final itemindex;
 
+  BuyNowButton({Key? key, required this.product, required this.itemindex})
+      : super(key: key);
+
+  @override
+  State<BuyNowButton> createState() => _BuyNowButtonState();
+}
+
+class _BuyNowButtonState extends State<BuyNowButton> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -13,9 +22,16 @@ class BottomButton extends StatelessWidget {
       height: 60,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProductDetails(
+                        product: products[0],
+                      )));
+        },
         child: const Text(
-          'Confirm purchase',
+          ' Buy Now',
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
         ),
         style: ButtonStyle(

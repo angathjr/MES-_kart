@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sample/products/products.dart';
-import 'package:sample/widgets/BottomButton.dart';
+import 'package:sample/widgets/ConfirmButton.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
@@ -197,6 +197,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
             ),
-            bottomSheet: const BottomButton()));
+            bottomSheet: const ConfirmButton()));
   }
 }

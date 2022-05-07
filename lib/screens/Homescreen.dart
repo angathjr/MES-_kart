@@ -28,11 +28,11 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
               child: TextFormField(
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(left: 10),
@@ -56,43 +56,48 @@ class _HomeScreenState extends State<HomeScreen>
             const SizedBox(
               height: 10,
             ),
-            Expanded(
+            Flexible(
               flex: 0,
-              child: TabBar(
-                  onTap: (index) {
-                    int updatedindex = index;
-                  },
-                  indicator: ShapeDecoration(
-                      color: Colors.deepOrange,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16))),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  unselectedLabelColor: Colors.black,
-                  isScrollable: true,
-                  labelColor: Colors.white,
-                  controller: _tabcontroller,
-                  tabs: const [
-                    Tab(
-                      text: 'All',
-                    ),
-                    Tab(
-                      text: 'crafts',
-                    ),
-                    Tab(
-                      text: 'gifts',
-                    ),
-                    Tab(
-                      text: 'paintings',
-                    ),
-                  ]),
+              child: Container(
+                width: double.maxFinite,
+                child: TabBar(
+                    onTap: (index) {
+                      int updatedindex = index;
+                    },
+                    indicator: ShapeDecoration(
+                        color: Colors.deepOrange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16))),
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    unselectedLabelColor: Colors.black,
+                    isScrollable: false,
+                    labelColor: Colors.white,
+                    controller: _tabcontroller,
+                    tabs: const [
+                      Tab(
+                        text: 'All',
+                      ),
+                      Tab(
+                        text: 'crafts',
+                      ),
+                      Tab(
+                        text: 'gifts',
+                      ),
+                      Tab(
+                        text: 'paintings',
+                      ),
+                    ]),
+              ),
             ),
-            Expanded(
-              child: TabBarView(controller: _tabcontroller, children: const [
-                AllCatogery(),
-                craftsCategory(),
-                GiftCategory(),
-                paintingscategory()
-              ]),
+            Container(
+              child: Expanded(
+                child: TabBarView(controller: _tabcontroller, children: const [
+                  AllCatogery(),
+                  craftsCategory(),
+                  GiftCategory(),
+                  paintingscategory()
+                ]),
+              ),
             ),
           ],
         ),
