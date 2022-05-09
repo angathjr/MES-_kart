@@ -1,11 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sample/main.dart';
-import 'package:sample/products/products.dart';
 import 'package:sample/screens/MainScreen.dart';
-import 'package:sample/screens/ProductDetails.dart';
 import 'package:sample/screens/Registration.dart';
 
 class LoginScreen extends StatefulWidget {

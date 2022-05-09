@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sample/screens/Homescreen.dart';
+import 'package:sample/screens/loadingAndPurchase.dart';
 
 class ConfirmButton extends StatelessWidget {
   const ConfirmButton({
@@ -12,7 +14,10 @@ class ConfirmButton extends StatelessWidget {
       height: 60,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Loading()));
+        },
         child: const Text(
           'Confirm purchase',
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),

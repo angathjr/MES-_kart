@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
+  static int index = 0;
 
   @override
   void initState() {
@@ -58,46 +59,41 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             Flexible(
               flex: 0,
-              child: Container(
-                width: double.maxFinite,
-                child: TabBar(
-                    onTap: (index) {
-                      int updatedindex = index;
-                    },
-                    indicator: ShapeDecoration(
-                        color: Colors.deepOrange,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16))),
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    unselectedLabelColor: Colors.black,
-                    isScrollable: false,
-                    labelColor: Colors.white,
-                    controller: _tabcontroller,
-                    tabs: const [
-                      Tab(
-                        text: 'All',
-                      ),
-                      Tab(
-                        text: 'crafts',
-                      ),
-                      Tab(
-                        text: 'gifts',
-                      ),
-                      Tab(
-                        text: 'paintings',
-                      ),
-                    ]),
-              ),
+              child: TabBar(
+                  onTap: (index) {
+                    int updatedindex = index;
+                  },
+                  indicator: ShapeDecoration(
+                      color: Colors.deepOrange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  unselectedLabelColor: Colors.black,
+                  isScrollable: false,
+                  labelColor: Colors.white,
+                  controller: _tabcontroller,
+                  tabs: const [
+                    Tab(
+                      text: 'All',
+                    ),
+                    Tab(
+                      text: 'crafts',
+                    ),
+                    Tab(
+                      text: 'gifts',
+                    ),
+                    Tab(
+                      text: 'paintings',
+                    ),
+                  ]),
             ),
-            Container(
-              child: Expanded(
-                child: TabBarView(controller: _tabcontroller, children: const [
-                  AllCatogery(),
-                  craftsCategory(),
-                  GiftCategory(),
-                  paintingscategory()
-                ]),
-              ),
+            Expanded(
+              child: TabBarView(controller: _tabcontroller, children: const [
+                AllCatogery(),
+                craftsCategory(),
+                GiftCategory(),
+                paintingscategory()
+              ]),
             ),
           ],
         ),

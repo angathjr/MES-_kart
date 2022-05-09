@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,11 +16,14 @@ class ProductInfo extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<ProductInfo> createState() => _ProductInfoState();
+  State<ProductInfo> createState() => _ProductInfoState(itemindex);
 }
 
-class _ProductInfoState extends State<ProductInfo> {
+class _ProductInfoState extends State<ProductInfo>
+    with SingleTickerProviderStateMixin {
   int activeindex = 0;
+
+  _ProductInfoState(int itemindex);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -95,7 +96,7 @@ class _ProductInfoState extends State<ProductInfo> {
                                 dotHeight: 10,
                                 dotWidth: 10),
                             activeIndex: activeindex,
-                            count: products[0].images.length),
+                            count: products[widget.itemindex].images.length),
                         const SizedBox(
                           height: 5,
                         )
@@ -107,7 +108,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   height: 40,
                 ),
                 Text(
-                  products[0].title,
+                  widget.product.title,
                   style: GoogleFonts.lato(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -116,14 +117,14 @@ class _ProductInfoState extends State<ProductInfo> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(products[0].description,
+                Text(widget.product.description,
                     style: GoogleFonts.lato(
                         fontWeight: FontWeight.w400, fontSize: 15)),
                 const SizedBox(
                   height: 15,
                 ),
                 Text(
-                  '₹' + products[0].price.toString(),
+                  '₹' + widget.product.price.toString(),
                   style: GoogleFonts.lato(
                       fontWeight: FontWeight.w700, fontSize: 24),
                 ),
@@ -144,18 +145,21 @@ class _ProductInfoState extends State<ProductInfo> {
                       fontWeight: FontWeight.w700,
                       color: Color(0xff79747E)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  '''W x H: 14Inch x 20Inch\n\nType: Fabric Paint\n\nFrame Included\n\n\nT
-                    here are many variations of passages of Lorem Ipsum available,
+                  ''' W x H: 14Inch x 20Inch\n\nType: Fabric Paint\n\nFrame Included\n\n\n
+                    There are many variations of passages of Lorem Ipsum available,
                      but the majority have suffered alteration in some form, by injected humour, 
                      or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum,
                       you need to be sure there isn't anything embarrassing hidden in 
-                      the middle of text''',
+                      the middle of text ''',
+                  textAlign: TextAlign.start,
                   style: GoogleFonts.lato(
-                      fontSize: 16, fontWeight: FontWeight.w400),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),

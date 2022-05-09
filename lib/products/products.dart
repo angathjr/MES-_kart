@@ -33,7 +33,7 @@ List<Product> products = [
       color: Color(0xFF3D82AE)),
   Product(
       images: [
-        "lib/images/img4.png",
+        "lib/images/img2.png",
         "lib/images/img2.png",
         "lib/images/img3.png",
         "lib/images/img4.png",
@@ -47,7 +47,7 @@ List<Product> products = [
       color: Color(0xFFD3A984)),
   Product(
       images: [
-        "lib/images/img4.png",
+        "lib/images/img3.png",
         "lib/images/img2.png",
         "lib/images/img3.png",
         "lib/images/img4.png",
@@ -75,7 +75,7 @@ List<Product> products = [
       color: Color(0xFFE6B398)),
   Product(
       images: [
-        "lib/images/img4.png",
+        "lib/images/img2.png",
         "lib/images/img2.png",
         "lib/images/img3.png",
         "lib/images/img4.png",
@@ -89,7 +89,7 @@ List<Product> products = [
       color: Color(0xFFFB7883)),
   Product(
     images: [
-      "lib/images/img4.png",
+      "lib/images/image1.png",
       "lib/images/img2.png",
       "lib/images/img3.png",
       "lib/images/img4.png",

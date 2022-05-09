@@ -11,6 +11,9 @@ class BottomNavigation extends StatelessWidget {
       valueListenable: MainScreen.indexnotify,
       builder: (BuildContext ctx, int updatedindex, Widget? _) {
         return BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
           selectedItemColor: Color(0xffFF4400),
           unselectedItemColor: Color(0xff79747E),
           currentIndex: updatedindex,
@@ -21,6 +24,8 @@ class BottomNavigation extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_bag), label: 'My Orders'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_business_rounded), label: 'Sell'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
           ],
         );

@@ -4,16 +4,18 @@ import 'package:sample/screens/ProductDetails.dart';
 
 class BuyNowButton extends StatefulWidget {
   final Product product;
-  final itemindex;
+  int itemindex;
 
   BuyNowButton({Key? key, required this.product, required this.itemindex})
       : super(key: key);
 
   @override
-  State<BuyNowButton> createState() => _BuyNowButtonState();
+  State<BuyNowButton> createState() => _BuyNowButtonState(itemindex);
 }
 
 class _BuyNowButtonState extends State<BuyNowButton> {
+  _BuyNowButtonState(int itemindex);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +28,7 @@ class _BuyNowButtonState extends State<BuyNowButton> {
               context,
               MaterialPageRoute(
                   builder: (context) => ProductDetails(
-                        product: products[0],
+                        product: products[widget.itemindex],
                       )));
         },
         child: const Text(
