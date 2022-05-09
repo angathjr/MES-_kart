@@ -15,7 +15,7 @@ class SellScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: SingleChildScrollView(
             reverse: true,
             child: Column(
@@ -63,7 +63,7 @@ class SellScreen extends StatelessWidget {
                           Text(
                             'Upload ',
                             style: GoogleFonts.lato(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           )
                         ],
                       ),
@@ -82,7 +82,7 @@ class SellScreen extends StatelessWidget {
                           Text(
                             'Upload ',
                             style: GoogleFonts.lato(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           )
                         ],
                       ),
@@ -101,7 +101,7 @@ class SellScreen extends StatelessWidget {
                           Text(
                             'Upload ',
                             style: GoogleFonts.lato(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           )
                         ],
                       ),
@@ -120,7 +120,7 @@ class SellScreen extends StatelessWidget {
                           Text(
                             'Upload ',
                             style: GoogleFonts.lato(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           )
                         ],
                       ),
@@ -131,7 +131,7 @@ class SellScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 14,
                 ),
                 Text(
                   ' product name',
@@ -158,7 +158,7 @@ class SellScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 14,
                 ),
                 Text(
                   ' product price',
@@ -186,7 +186,7 @@ class SellScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 14,
                 ),
                 Text(
                   '  Description',
@@ -201,7 +201,7 @@ class SellScreen extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  height: 120,
+                  height: 114,
                   decoration: BoxDecoration(
                       color: Color(0xffF4F4F4),
                       borderRadius: BorderRadius.circular(10)),
@@ -213,7 +213,7 @@ class SellScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
