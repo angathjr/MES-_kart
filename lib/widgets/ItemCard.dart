@@ -16,16 +16,14 @@ class ItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Image.asset(
-                  product.image,
-                  fit: BoxFit.fill,
-                ),
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Image.asset(
+                product.image,
+                fit: BoxFit.fill,
               ),
             ),
           ),

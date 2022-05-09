@@ -10,10 +10,10 @@ class AllCatogery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-      child: GridView.builder(
+    return Flex(
+      direction: Axis.vertical,
+      children: [Expanded(
+          child: GridView.builder(
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -28,7 +28,7 @@ class AllCatogery extends StatelessWidget {
                   builder: (context) =>
                       ProductInfo(itemindex: index, product: products[index]))),
         ),
-      ),
-    ));
+      )),]
+    );
   }
 }

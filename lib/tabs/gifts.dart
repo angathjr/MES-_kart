@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample/screens/ProductDetails.dart';
+import 'package:sample/screens/ProductInfo.dart';
 import 'package:sample/widgets/ItemCard.dart';
 
 import '../products/products.dart';
@@ -9,10 +10,9 @@ class GiftCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-      child: GridView.builder(
+    return Flex(direction: Axis.vertical, children: [
+      Expanded(
+          child: GridView.builder(
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -25,9 +25,9 @@ class GiftCategory extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      ProductDetails(product: products[index]))),
+                      ProductInfo(itemindex: index, product: products[index]))),
         ),
-      ),
-    ));
+      )),
+    ]);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sample/products/products.dart';
 import 'package:sample/screens/ProductDetails.dart';
+import 'package:sample/screens/ProductInfo.dart';
 import 'package:sample/widgets/ItemCard.dart';
 
 class craftsCategory extends StatelessWidget {
@@ -9,10 +10,9 @@ class craftsCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-      child: GridView.builder(
+    return Flex(direction: Axis.vertical, children: [
+      Expanded(
+          child: GridView.builder(
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -25,9 +25,9 @@ class craftsCategory extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      ProductDetails(product: products[index]))),
+                      ProductInfo(itemindex: index, product: products[index]))),
         ),
-      ),
-    ));
+      )),
+    ]);
   }
 }

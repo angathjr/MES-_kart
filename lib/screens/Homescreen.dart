@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sample/tabs/All.dart';
 import 'package:sample/tabs/crafs.dart';
@@ -69,7 +70,8 @@ class _HomeScreenState extends State<HomeScreen>
                           borderRadius: BorderRadius.circular(16))),
                   indicatorSize: TabBarIndicatorSize.tab,
                   unselectedLabelColor: Colors.black,
-                  isScrollable: false,
+                  isScrollable: true,
+                  labelPadding: EdgeInsets.symmetric(horizontal: wdth * .060),
                   labelColor: Colors.white,
                   controller: _tabcontroller,
                   tabs: const [
