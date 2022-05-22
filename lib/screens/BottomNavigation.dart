@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:sample/screens/MainScreen.dart';
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+  const BottomNavigation({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class BottomNavigation extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          selectedItemColor: Color(0xffFF4400),
-          unselectedItemColor: Color(0xff79747E),
-          currentIndex: updatedindex,
+          selectedItemColor: const Color(0xffFF4400),
+          unselectedItemColor: const Color(0xff79747E),
+          currentIndex: index,
           onTap: (newindex) {
             MainScreen.indexnotify.value = newindex;
           },

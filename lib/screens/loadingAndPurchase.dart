@@ -25,7 +25,11 @@ class _LoadingState extends State<Loading> {
   _navigateorder() async {
     await Future.delayed(Duration(seconds: 5));
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MainScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => const MainScreen(
+                  index: 1,
+                )));
   }
 
   @override

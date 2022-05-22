@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/screens/MainScreen.dart';
+import 'package:sample/screens/loginscreen.dart';
 
 class SellScreen extends StatelessWidget {
   const SellScreen({Key? key}) : super(key: key);
@@ -217,7 +220,14 @@ class SellScreen extends StatelessWidget {
                     width: double.maxFinite,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => {
+                        FirebaseAuth.instance.signOut(),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
+                        )
+                      },
                       child: const Text(
                         'Upload',
                         style: TextStyle(

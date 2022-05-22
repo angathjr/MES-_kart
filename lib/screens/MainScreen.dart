@@ -6,7 +6,8 @@ import 'package:sample/screens/ProfileScreen.dart';
 import 'package:sample/screens/SellScreen.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   static ValueNotifier<int> indexnotify = ValueNotifier(0);
 
@@ -20,7 +21,9 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(
+        index: index,
+      ),
       body: SafeArea(
           child: ValueListenableBuilder(
         valueListenable: indexnotify,
