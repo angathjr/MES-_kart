@@ -1,7 +1,9 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/widgets/ConfirmButton.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -11,6 +13,10 @@ class Registration extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<Registration> {
+  final emailcontroller = TextEditingController();
+  final passcontrolller = TextEditingController();
+  final confirmcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double wdth = MediaQuery.of(context).size.width;
@@ -82,6 +88,7 @@ class _LoginScreenState extends State<Registration> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  controller: emailcontroller,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
@@ -115,6 +122,7 @@ class _LoginScreenState extends State<Registration> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  controller: passcontrolller,
                   obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
@@ -148,6 +156,7 @@ class _LoginScreenState extends State<Registration> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  controller: confirmcontroller,
                   obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
@@ -164,7 +173,7 @@ class _LoginScreenState extends State<Registration> {
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => {SignUp(), Navigator.pop(context)},
                     child: const Text('Sign up',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 16)),
@@ -207,5 +216,15 @@ class _LoginScreenState extends State<Registration> {
         ),
       ),
     ));
+  }
+
+  Future<void> SignUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailcontroller.text.trim(),
+          password: passcontrolller.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }

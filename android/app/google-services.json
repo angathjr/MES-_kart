@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "474439999979",
+    "project_id": "mes-kart",
+    "storage_bucket": "mes-kart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474439999979:android:b57c80a7b4885c6c5079ae",
+        "android_client_info": {
+          "package_name": "com.example.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474439999979-lpoc9tjofiv1e8cc90eqbo02bnla0t79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTtm6kdqwI_N_dsOpwqKaKDnybUZM96Kk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474439999979-lpoc9tjofiv1e8cc90eqbo02bnla0t79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

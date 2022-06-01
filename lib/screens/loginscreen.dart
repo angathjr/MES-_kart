@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sample/screens/MainScreen.dart';
 import 'package:sample/screens/Registration.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailcontroller = TextEditingController();
+  final passcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double wdth = MediaQuery.of(context).size.width;
@@ -82,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  controller: emailcontroller,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
@@ -115,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
+                  controller: passcontroller,
                   obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10),
@@ -133,12 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MainScreen()));
-                    },
+                    onPressed: SignIn,
                     child: const Text(
                       'Sign in',
                       style:
@@ -200,5 +200,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     ));
+  }
+
+  Future SignIn() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailcontroller.text.trim(),
+        password: passcontroller.text.trim());
   }
 }
