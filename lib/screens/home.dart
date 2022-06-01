@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -22,7 +21,7 @@ class _HomeState extends State<Home> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return  MainScreen(
+            return MainScreen(
               index: 0,
             );
           } else {
@@ -33,39 +32,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-=======
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:sample/screens/Homescreen.dart';
-import 'package:sample/screens/MainScreen.dart';
-import 'package:sample/screens/loginscreen.dart';
-
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const MainScreen(
-              index: 0,
-            );
-          } else {
-            return LoginScreen();
-          }
-        },
-      ),
-    );
-  }
-}
->>>>>>> 776526292bf05460e36b1c233f7f3e10600347de
