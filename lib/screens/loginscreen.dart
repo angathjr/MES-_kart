@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/main.dart';
+import 'package:sample/screens/Homescreen.dart';
+import 'package:sample/screens/MainScreen.dart';
 import 'package:sample/screens/Registration.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -203,8 +206,29 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future SignIn() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailcontroller.text.trim(),
-        password: passcontroller.text.trim());
+    FocusScope.of(context).unfocus();
+    showDialog(
+        context: context,
+        builder: (context) => Center(child: CircularProgressIndicator()));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailcontroller.text.trim(),
+          password: passcontroller.text.trim());
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MainScreen(
+                    index: 0,
+                  )));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('No user found on that email')));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Incorrect password !!')));
+      }
+    }
+    navigatorkey.currentState!.popUntil((route) => route.isFirst);
   }
 }

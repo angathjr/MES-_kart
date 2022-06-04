@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'loginscreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -22,6 +25,19 @@ class MapScreenState extends State<ProfileScreen>
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () => {
+                FirebaseAuth.instance.signOut(),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                ),
+              },
+              icon: Icon(Icons.logout_rounded),
+              color: Colors.black,
+            ),
+          ],
           title: const Text('PROFILE',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -337,10 +353,10 @@ class MapScreenState extends State<ProfileScreen>
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: 10.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: Container(
                   child: ElevatedButton(
-                child: Text("Save"),
+                child: const Text("Save"),
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -386,7 +402,7 @@ class MapScreenState extends State<ProfileScreen>
 
   Widget _getEditIcon() {
     return GestureDetector(
-      child: CircleAvatar(
+      child: const CircleAvatar(
         backgroundColor: Colors.red,
         radius: 14.0,
         child: Icon(

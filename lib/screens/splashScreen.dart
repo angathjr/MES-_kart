@@ -20,7 +20,7 @@ class _splashScreenState extends State<splashScreen> {
   }
 
   _navigatehome() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Home()));
   }
@@ -34,7 +34,7 @@ class _splashScreenState extends State<splashScreen> {
         body: Container(
           height: hgth,
           width: wdth,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('lib/images/splash.png'),
                   fit: BoxFit.fill)),

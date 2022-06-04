@@ -220,14 +220,7 @@ class SellScreen extends StatelessWidget {
                     width: double.maxFinite,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () => {
-                        FirebaseAuth.instance.signOut(),
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()),
-                        )
-                      },
+                      onPressed: () => null,
                       child: const Text(
                         'Upload',
                         style: TextStyle(
