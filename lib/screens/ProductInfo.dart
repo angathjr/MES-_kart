@@ -29,6 +29,7 @@ class _ProductInfoState extends State<ProductInfo>
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          titleSpacing: .5,
           title: Text(
             ' Products',
             style: GoogleFonts.lato(

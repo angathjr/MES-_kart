@@ -16,6 +16,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
     double wdth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(

@@ -16,20 +16,24 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  bool loading = true;
   @override
   void initState() {
     super.initState();
+
     _navigateorder();
   }
 
   _navigateorder() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        loading = false;
+      });
+    });
+    await Future.delayed(const Duration(seconds: 2), () {});
+    MainScreen.indexnotify.value = 1;
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>  MainScreen(
-                  index: 1,
-                )));
+        context, MaterialPageRoute(builder: (context) => MainScreen()));
   }
 
   @override
@@ -42,7 +46,13 @@ class _LoadingState extends State<Loading> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: []),
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(seconds: 3),
+                switchInCurve: Curves.decelerate,
+                child: loading ? loadingdetails() : purchase(),
+              ),
+            ]),
       )),
     );
   }

@@ -6,6 +6,7 @@ import 'package:sample/screens/Homescreen.dart';
 import 'package:sample/screens/MainScreen.dart';
 import 'package:sample/screens/Registration.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sample/screens/forgot_pass.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -162,7 +163,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Center(
                 child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Forgot_pass()));
+              },
               child: const Text(
                 'forgot password?',
                 style: TextStyle(
@@ -209,24 +213,23 @@ class _LoginScreenState extends State<LoginScreen> {
     FocusScope.of(context).unfocus();
     showDialog(
         context: context,
-        builder: (context) => Center(child: CircularProgressIndicator()));
+        builder: (context) => const Center(child: CircularProgressIndicator()));
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passcontroller.text.trim());
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MainScreen(
-                    index: 0,
-                  )));
+          context, MaterialPageRoute(builder: (context) => MainScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('No user found on that email')));
+            const SnackBar(content: Text('No user found on that email')));
       } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Incorrect password !!')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Incorrect password !!')));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("The field can't be empty")));
       }
     }
     navigatorkey.currentState!.popUntil((route) => route.isFirst);

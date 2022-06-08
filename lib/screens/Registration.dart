@@ -220,9 +220,14 @@ class _LoginScreenState extends State<Registration> {
 
   Future<void> SignUp() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailcontroller.text.trim(),
-          password: passcontrolller.text.trim());
+      if (passcontrolller.text.trim() == confirmcontroller.text.trim()) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailcontroller.text.trim(),
+            password: passcontrolller.text.trim());
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Password doesnot match')));
+      }
     } on FirebaseAuthException catch (e) {
       print(e);
     }

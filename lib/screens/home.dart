@@ -17,15 +17,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return MainScreen(
-              index: 0,
-            );
+            return MainScreen();
           } else {
-            return LoginScreen();
+            return const LoginScreen();
           }
         },
       ),

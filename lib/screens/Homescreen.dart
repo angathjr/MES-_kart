@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen>
     double hght = MediaQuery.of(context).size.height;
     double wdth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
