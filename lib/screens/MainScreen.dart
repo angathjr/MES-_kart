@@ -8,15 +8,20 @@ import 'package:sample/screens/SellScreen.dart';
 
 var user;
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
 
   static ValueNotifier<int> indexnotify = ValueNotifier(0);
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   final pages = [
     const HomeScreen(),
     const MyOrderScreen(),
-    const SellScreen(),
+     SellScreen(),
     ProfileScreen()
   ];
 
@@ -24,14 +29,14 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     user = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      
+
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigation(),
       body: SafeArea(
           child: ValueListenableBuilder(
-        valueListenable: indexnotify,
+        valueListenable: MainScreen.indexnotify,
         builder: (BuildContext context, int updatedindex, _) {
-          print(indexnotify.value);
+          print(MainScreen.indexnotify.value);
           return pages[updatedindex];
         },
       )),

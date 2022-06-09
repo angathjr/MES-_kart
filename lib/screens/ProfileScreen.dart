@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'MainScreen.dart';
 import 'loginscreen.dart';
@@ -9,22 +13,42 @@ class ProfileScreen extends StatefulWidget {
   @override
   MapScreenState createState() => MapScreenState();
 }
+
 class MapScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   bool _status = true;
   bool start = false;
+  bool _is_profile = false;
   final FocusNode myFocusNode = FocusNode();
+  XFile? img;
+  late File choosen_img;
+  Future pickimage() async {
+    try {
+      img = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (img == null) {
+        return;
+      }
+      final imagetemp = File(img!.path);
+      setState(() {
+        choosen_img = imagetemp;
+      });
+    } on PlatformException catch (e) {
+      print("failed to pick image");
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(microseconds:500, ),(){
+    Future.delayed(
+        const Duration(
+          microseconds: 500,
+        ), () {
       start = true;
     });
   }
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -40,7 +64,7 @@ class MapScreenState extends State<ProfileScreen>
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 ),
               },
-              icon: Icon(Icons.logout_rounded),
+              icon: const Icon(Icons.logout_rounded),
               color: Colors.black,
             ),
           ],
@@ -51,299 +75,323 @@ class MapScreenState extends State<ProfileScreen>
                   fontFamily: 'lato',
                   color: Colors.black)),
         ),
-        body: Container(
-
-          child: Container(
-            color: Colors.white,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
+        body: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            ListView(
+              shrinkWrap: true,
               children: [
-                Column(
-                  children: [
-                    Container(
-                      height: 180.0,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
+                Container(
+                  height: 180.0,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Stack(fit: StackFit.loose, children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  child: _is_profile
+                                      ? Container(
+                                          height: 140,
+                                          width: 140,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: FileImage(
+                                                      choosen_img))),
+                                        )
+                                      : Container(
+                                          height: 140,
+                                          width: 140,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'lib/images/logo.png',))),
+                                        ),
+                                  width: 140.0,
+                                  height: 140.0,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.black,
+                                    // image: (DecorationImage(
+                                    //     image: _is_profile?AssetImage(
+                                    //         'lib/images/title.png'):FileImage(choosen_img)))
+                                  )),
+                            ],
+                          ),
                           Padding(
-                            padding: EdgeInsets.only(top: 20.0),
-                            child: Stack(fit: StackFit.loose, children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              padding: const EdgeInsets.only(
+                                  top: 90.0, right: 100.0),
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                      width: 140.0,
-                                      height: 140.0,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          image:
-                                              AssetImage('lib/images/title.png'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )),
+                                  CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    radius: 25.0,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          pickimage();
+                                          if (choosen_img != null)
+                                            _is_profile = true;
+                                        });
+                                      },
+                                      icon: Icon(Icons.camera_alt),
+                                      color: Colors.white,
+                                    ),
+                                  )
                                 ],
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 90.0, right: 100.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.red,
-                                        radius: 25.0,
-                                        child: Icon(
-                                          Icons.camera_alt,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                            ]),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Color(0xffFFFFFF),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 25.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Text(
-                                          'Personal Information',
-                                          style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        _status ? _getEditIcon() : Container(),
-                                      ],
-                                    )
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Text(
-                                          'Name',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 10.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(0xffF4F4F4),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: TextField(
-                                          decoration: const InputDecoration(
-                                              contentPadding:
-                                                  EdgeInsets.only(left: 5),
-                                              hintText: "Enter Your Name",
-                                              border: InputBorder.none),
-                                          enabled: !_status,
-                                          autofocus: !_status,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Text(
-                                          'Email ID',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 10.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(0xffF4F4F4),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: TextFormField(
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: const InputDecoration(
-                                              contentPadding:
-                                                  EdgeInsets.only(left: 5),
-                                              hintText: "Enter  Email ID",
-                                              border: InputBorder.none),
-                                          enabled: !_status,
-                                          autofocus: !_status,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Text(
-                                          'Mobile',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 10.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(0xffF4F4F4),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: TextField(
-                                          keyboardType: TextInputType.phone,
-                                          decoration: const InputDecoration(
-                                              contentPadding:
-                                                  EdgeInsets.only(left: 5),
-                                              hintText:
-                                                  "Enter Your Mobile Number",
-                                              border: InputBorder.none),
-                                          enabled: !_status,
-                                          autofocus: !_status,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        child: const Text(
-                                          'Password',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      flex: 2,
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 10.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffF4F4F4),
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
-                                          child: TextFormField(
-                                            obscureText: true,
-                                            decoration: const InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.only(left: 5),
-                                                hintText: "Change password",
-                                                border: InputBorder.none),
-                                            enabled: !_status,
-                                            autofocus: !_status,
-                                          ),
-                                        ),
-                                      ),
-                                      flex: 2,
-                                    ),
-                                  ],
-                                )),
-                            !_status ? _getActionButtons() : Container(),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
+                              )),
+                        ]),
+                      )
+                    ],
+                  ),
                 ),
+                Container(
+                  color: Color(0xffFFFFFF),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text(
+                                      'Personal Information',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    _status ? _getEditIcon() : Container(),
+                                  ],
+                                )
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text(
+                                      'Name',
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffF4F4F4),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.only(left: 5),
+                                          hintText: "Enter Your Name",
+                                          border: InputBorder.none),
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text(
+                                      'Email ID',
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffF4F4F4),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: TextFormField(
+                                      keyboardType:
+                                          TextInputType.emailAddress,
+                                      decoration: const InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.only(left: 5),
+                                          hintText: "Enter  Email ID",
+                                          border: InputBorder.none),
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text(
+                                      'Mobile',
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffF4F4F4),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: TextField(
+                                      keyboardType: TextInputType.phone,
+                                      decoration: const InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.only(left: 5),
+                                          hintText:
+                                              "Enter Your Mobile Number",
+                                          border: InputBorder.none),
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    child: const Text(
+                                      'Password',
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  flex: 2,
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 10.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffF4F4F4),
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: TextFormField(
+                                        obscureText: true,
+                                        decoration: const InputDecoration(
+                                            contentPadding:
+                                                EdgeInsets.only(left: 5),
+                                            hintText: "Change password",
+                                            border: InputBorder.none),
+                                        enabled: !_status,
+                                        autofocus: !_status,
+                                      ),
+                                    ),
+                                  ),
+                                  flex: 2,
+                                ),
+                              ],
+                            )),
+                        !_status ? _getActionButtons() : Container(),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
-          ),
+          ],
         ));
   }
 
