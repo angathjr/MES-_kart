@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sample/DataBase/firebase.dart';
 import 'MainScreen.dart';
 import 'loginscreen.dart';
 
@@ -15,6 +16,9 @@ class ProfileScreen extends StatefulWidget {
 
 class MapScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
+  final name_controller = TextEditingController();
+  final ph_no_controller = TextEditingController();
+  final email_controller = TextEditingController();
   bool _status = true;
   bool start = false;
   bool _is_profile = false;
@@ -30,11 +34,13 @@ class MapScreenState extends State<ProfileScreen>
       final imagetemp = File(img!.path);
       setState(() {
         choosen_img = imagetemp;
+
       });
     } on PlatformException catch (e) {
       print("failed to pick image");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,8 +130,8 @@ class MapScreenState extends State<ProfileScreen>
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          pickimage().then((e) => _is_profile=true);
-
+                                          pickimage()
+                                              .then((e) => _is_profile = true);
                                         });
                                       },
                                       icon: Icon(Icons.camera_alt),
@@ -208,6 +214,7 @@ class MapScreenState extends State<ProfileScreen>
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: TextField(
+                                      controller: name_controller,
                                       decoration: const InputDecoration(
                                           contentPadding:
                                               EdgeInsets.only(left: 5),
@@ -253,6 +260,7 @@ class MapScreenState extends State<ProfileScreen>
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: TextFormField(
+                                      controller: email_controller,
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: const InputDecoration(
                                           contentPadding:
@@ -299,6 +307,7 @@ class MapScreenState extends State<ProfileScreen>
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: TextField(
+                                      controller: ph_no_controller,
                                       keyboardType: TextInputType.phone,
                                       decoration: const InputDecoration(
                                           contentPadding:
@@ -403,6 +412,8 @@ class MapScreenState extends State<ProfileScreen>
                     textStyle: MaterialStateProperty.all(
                         TextStyle(color: Colors.white))),
                 onPressed: () {
+                  CreateUser(name_controller.text, ph_no_controller.text);
+
                   setState(() {
                     _status = true;
                     FocusScope.of(context).requestFocus(FocusNode());

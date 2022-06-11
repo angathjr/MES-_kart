@@ -254,7 +254,7 @@ class _SellScreenState extends State<SellScreen> {
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => createNewUserInFirestore(),
+                    onPressed: () =>null,
                     child: const Text(
                       'Upload',
                       style: TextStyle(

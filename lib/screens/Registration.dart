@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sample/DataBase/firebase.dart';
 import 'package:sample/widgets/ConfirmButton.dart';
 
+import '../main.dart';
+
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
@@ -220,12 +222,16 @@ class _LoginScreenState extends State<Registration> {
   }
 
   Future<void> SignUp() async {
+    FocusScope.of(context).unfocus();
+    showDialog(
+        context: context,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
     try {
       if (passcontrolller.text.trim() == confirmcontroller.text.trim()) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailcontroller.text.trim(),
             password: passcontrolller.text.trim());
-       // createNewUserInFirestore();
+        CreateUser("name", "123");
       } else {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Password doesnot match')));
@@ -233,5 +239,6 @@ class _LoginScreenState extends State<Registration> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
+    navigatorkey.currentState!.popUntil((route) => route.isFirst);
   }
 }
