@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'MainScreen.dart';
 import 'loginscreen.dart';
 
@@ -36,18 +35,6 @@ class MapScreenState extends State<ProfileScreen>
       print("failed to pick image");
     }
   }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(
-        const Duration(
-          microseconds: 500,
-        ), () {
-      start = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,17 +88,18 @@ class MapScreenState extends State<ProfileScreen>
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                  image: FileImage(
-                                                      choosen_img))),
+                                                  image:
+                                                      FileImage(choosen_img))),
                                         )
                                       : Container(
                                           height: 140,
                                           width: 140,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
                                                   image: AssetImage(
-                                                      'lib/images/logo.png',))),
+                                                'lib/images/logo.png',
+                                              ))),
                                         ),
                                   width: 140.0,
                                   height: 140.0,
@@ -136,9 +124,8 @@ class MapScreenState extends State<ProfileScreen>
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          pickimage();
-                                          if (choosen_img != null)
-                                            _is_profile = true;
+                                          pickimage().then((e) => _is_profile=true);
+
                                         });
                                       },
                                       icon: Icon(Icons.camera_alt),
@@ -164,13 +151,11 @@ class MapScreenState extends State<ProfileScreen>
                             padding: const EdgeInsets.only(
                                 left: 25.0, right: 25.0, top: 25.0),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
                                     Text(
@@ -197,8 +182,7 @@ class MapScreenState extends State<ProfileScreen>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
                                     Text(
@@ -243,8 +227,7 @@ class MapScreenState extends State<ProfileScreen>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
                                     Text(
@@ -270,8 +253,7 @@ class MapScreenState extends State<ProfileScreen>
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     child: TextFormField(
-                                      keyboardType:
-                                          TextInputType.emailAddress,
+                                      keyboardType: TextInputType.emailAddress,
                                       decoration: const InputDecoration(
                                           contentPadding:
                                               EdgeInsets.only(left: 5),
@@ -291,8 +273,7 @@ class MapScreenState extends State<ProfileScreen>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
                                     Text(
@@ -322,8 +303,7 @@ class MapScreenState extends State<ProfileScreen>
                                       decoration: const InputDecoration(
                                           contentPadding:
                                               EdgeInsets.only(left: 5),
-                                          hintText:
-                                              "Enter Your Mobile Number",
+                                          hintText: "Enter Your Mobile Number",
                                           border: InputBorder.none),
                                       enabled: !_status,
                                       autofocus: !_status,
@@ -361,8 +341,7 @@ class MapScreenState extends State<ProfileScreen>
                               children: [
                                 Flexible(
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 10.0),
+                                    padding: const EdgeInsets.only(right: 10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: Color(0xffF4F4F4),

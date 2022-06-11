@@ -19,11 +19,11 @@ class _SellScreenState extends State<SellScreen> {
 
   bool img1_status = false;
 
-  bool img2 = false;
+  bool img2_status = false;
 
-  bool img3 = false;
+  bool img3_status = false;
 
-  bool img4 = false;
+  bool img4_status = false;
   late File choosen_img;
   Future pickimage() async {
     try {
@@ -103,51 +103,63 @@ class _SellScreenState extends State<SellScreen> {
                           borderRadius: BorderRadius.circular(15)),
                     ),
                   ),
-                  Container(
-                    height: wdth * .2,
-                    width: wdth * .2,
-                    child: _camera_icon(),
-                    decoration: BoxDecoration(
-                        color: const Color(0xffEDEDED),
-                        borderRadius: BorderRadius.circular(15)),
-                  ),
-                  Container(
-                    height: wdth * .2,
-                    width: wdth * .2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.camera_alt_rounded),
-                        Text(
-                          'Upload ',
-                          style: GoogleFonts.lato(
-                              fontWeight: FontWeight.bold, fontSize: 14),
-                        )
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        pickimage().then((e) => img2_status = true);
+                      });
+                    },
+                    child: Container(
+                      height: wdth * .2,
+                      width: wdth * .2,
+                      child: img2_status
+                          ? Container(
+                        child: Image.file(choosen_img,fit: BoxFit.fill,),
+
+                      )
+                          : _camera_icon(),
+                      decoration: BoxDecoration(
+                          color: const Color(0xffEDEDED),
+                          borderRadius: BorderRadius.circular(15)),
                     ),
-                    decoration: BoxDecoration(
-                        color: const Color(0xffEDEDED),
-                        borderRadius: BorderRadius.circular(15)),
-                  ),
-                  Container(
-                    height: wdth * .2,
-                    width: wdth * .2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.camera_alt_rounded),
-                        Text(
-                          'Upload ',
-                          style: GoogleFonts.lato(
-                              fontWeight: FontWeight.bold, fontSize: 14),
-                        )
-                      ],
+                  ),GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        pickimage().then((e) => img3_status = true);
+                      });
+                    },
+                    child: Container(
+                      height: wdth * .2,
+                      width: wdth * .2,
+                      child: img3_status
+                          ? Container(
+                        child: Image.file(choosen_img,fit: BoxFit.fill,),
+
+                      )
+                          : _camera_icon(),
+                      decoration: BoxDecoration(
+                          color: const Color(0xffEDEDED),
+                          borderRadius: BorderRadius.circular(15)),
                     ),
-                    decoration: BoxDecoration(
-                        color: const Color(0xffEDEDED),
-                        borderRadius: BorderRadius.circular(15)),
+                  ),GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        pickimage().then((e) => img4_status = true);
+                      });
+                    },
+                    child: Container(
+                      height: wdth * .2,
+                      width: wdth * .2,
+                      child: img4_status
+                          ? Container(
+                        child: Image.file(choosen_img,fit: BoxFit.fill,),
+
+                      )
+                          : _camera_icon(),
+                      decoration: BoxDecoration(
+                          color: const Color(0xffEDEDED),
+                          borderRadius: BorderRadius.circular(15)),
+                    ),
                   ),
                 ],
               ),
