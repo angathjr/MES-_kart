@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sample/DataBase/firebase.dart';
 
 class SellScreen extends StatefulWidget {
   SellScreen({Key? key}) : super(key: key);
@@ -253,7 +254,7 @@ class _SellScreenState extends State<SellScreen> {
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => null,
+                    onPressed: () => createNewUserInFirestore(),
                     child: const Text(
                       'Upload',
                       style: TextStyle(
