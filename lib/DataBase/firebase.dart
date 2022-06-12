@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 FirebaseAuth auth = FirebaseAuth.instance;
+
+//Adding user
 Future CreateUser(String name, String phone_no) async {
   final docuser =
       FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid);
@@ -16,3 +18,4 @@ Future CreateUser(String name, String phone_no) async {
   };
   await docuser.set(json);
 }
+

@@ -88,7 +88,7 @@ class _LoginScreenState extends State<Registration> {
               padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
+                    color: const Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
                   controller: emailcontroller,
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<Registration> {
               padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
+                    color: const Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
                   controller: passcontrolller,
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<Registration> {
               padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
+                    color: const Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
                   controller: confirmcontroller,
@@ -172,17 +172,17 @@ class _LoginScreenState extends State<Registration> {
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Container(
+              child:SizedBox(
                   width: double.maxFinite,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => {SignUp(), Navigator.pop(context)},
+                    onPressed: () => {signUp(), Navigator.pop(context)},
                     child: const Text('Sign up',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 16)),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Color(0xffFF4400)),
+                          MaterialStateProperty.all(const Color(0xffFF4400)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
@@ -221,7 +221,7 @@ class _LoginScreenState extends State<Registration> {
     ));
   }
 
-  Future<void> SignUp() async {
+  Future<void> signUp() async {
     FocusScope.of(context).unfocus();
     showDialog(
         context: context,
@@ -234,10 +234,10 @@ class _LoginScreenState extends State<Registration> {
         CreateUser("name", "123");
       } else {
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Password doesnot match')));
+            .showSnackBar(const SnackBar(content: Text('Password does not match')));
       }
     } on FirebaseAuthException catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(content:Text(e.message!)));
     }
     navigatorkey.currentState!.popUntil((route) => route.isFirst);
   }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,8 @@ class MapScreenState extends State<ProfileScreen>
   final FocusNode myFocusNode = FocusNode();
   XFile? img;
   late File choosen_img;
+  UploadTask? uploadTask;
+  late final url_of_dp;
   Future pickimage() async {
     try {
       img = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -34,8 +37,14 @@ class MapScreenState extends State<ProfileScreen>
       final imagetemp = File(img!.path);
       setState(() {
         choosen_img = imagetemp;
-
       });
+
+      final path='Profile_picture/${img!.name}';
+      final ref=FirebaseStorage.instance.ref().child(path);
+      uploadTask=ref.putFile(imagetemp);
+      final snapshot=await uploadTask!.whenComplete((){});
+       url_of_dp=await snapshot.ref.getDownloadURL();
+
     } on PlatformException catch (e) {
       print("failed to pick image");
     }
@@ -95,7 +104,7 @@ class MapScreenState extends State<ProfileScreen>
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
                                                   image:
-                                                      FileImage(choosen_img))),
+                                                      NetworkImage(url_of_dp))),
                                         )
                                       : Container(
                                           height: 140,

@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sample/DataBase/firebase.dart';
 
 class SellScreen extends StatefulWidget {
-  SellScreen({Key? key}) : super(key: key);
+  const SellScreen({Key? key}) : super(key: key);
 
   @override
   State<SellScreen> createState() => _SellScreenState();
@@ -39,7 +39,7 @@ class _SellScreenState extends State<SellScreen> {
 
 
     } on PlatformException catch (e) {
-      print("failed to pick image");
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to select image')));
     }
   }
 
@@ -98,7 +98,7 @@ class _SellScreenState extends State<SellScreen> {
                               child: Image.file(choosen_img,fit: BoxFit.fill,),
 
                             )
-                          : _camera_icon(),
+                          : camera_icon(),
                       decoration: BoxDecoration(
                           color: const Color(0xffEDEDED),
                           borderRadius: BorderRadius.circular(15)),
@@ -118,7 +118,7 @@ class _SellScreenState extends State<SellScreen> {
                         child: Image.file(choosen_img,fit: BoxFit.fill,),
 
                       )
-                          : _camera_icon(),
+                          : camera_icon(),
                       decoration: BoxDecoration(
                           color: const Color(0xffEDEDED),
                           borderRadius: BorderRadius.circular(15)),
@@ -137,7 +137,7 @@ class _SellScreenState extends State<SellScreen> {
                         child: Image.file(choosen_img,fit: BoxFit.fill,),
 
                       )
-                          : _camera_icon(),
+                          : camera_icon(),
                       decoration: BoxDecoration(
                           color: const Color(0xffEDEDED),
                           borderRadius: BorderRadius.circular(15)),
@@ -156,7 +156,7 @@ class _SellScreenState extends State<SellScreen> {
                         child: Image.file(choosen_img,fit: BoxFit.fill,),
 
                       )
-                          : _camera_icon(),
+                          : camera_icon(),
                       decoration: BoxDecoration(
                           color: const Color(0xffEDEDED),
                           borderRadius: BorderRadius.circular(15)),
@@ -208,7 +208,7 @@ class _SellScreenState extends State<SellScreen> {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
+                    color: const Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
                   keyboardType: TextInputType.number,
@@ -237,7 +237,7 @@ class _SellScreenState extends State<SellScreen> {
               Container(
                 height: 114,
                 decoration: BoxDecoration(
-                    color: Color(0xffF4F4F4),
+                    color: const Color(0xffF4F4F4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextFormField(
                   decoration: const InputDecoration(
@@ -262,7 +262,7 @@ class _SellScreenState extends State<SellScreen> {
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Color(0xffFF4400)),
+                          MaterialStateProperty.all(const Color(0xffFF4400)),
                       shape:
                           MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -277,7 +277,7 @@ class _SellScreenState extends State<SellScreen> {
     );
   }
 
-  Widget _camera_icon() {
+  Widget camera_icon() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
