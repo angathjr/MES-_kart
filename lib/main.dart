@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorkey,
       theme: ThemeData(
           primaryColor: Colors.blue, scaffoldBackgroundColor: Colors.white),
-      home: splashScreen(),
+      home:const splashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

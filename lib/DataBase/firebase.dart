@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
+import 'package:firebase_storage/firebase_storage.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
-
-//Adding user
+final CollectionReference users=FirebaseFirestore.instance.collection('Users');
+final storageRef = FirebaseStorage.instance.ref();
 Future CreateUser(String name, String phone_no) async {
   final docuser =
       FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid);
