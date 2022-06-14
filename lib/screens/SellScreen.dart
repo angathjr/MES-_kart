@@ -171,7 +171,7 @@ class _SellScreenState extends State<SellScreen> {
               height: 14,
             ),
             Text(
-              ' product name',
+              ' Product name',
               style: GoogleFonts.lato(
                 textStyle: const TextStyle(
                   fontSize: 14,
@@ -189,7 +189,7 @@ class _SellScreenState extends State<SellScreen> {
               child: TextFormField(
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.only(left: 10),
-                  hintText: 'Place holder',
+                  hintText: 'product name',
                   border: InputBorder.none,
                 ),
               ),
@@ -198,7 +198,7 @@ class _SellScreenState extends State<SellScreen> {
               height: 14,
             ),
             Text(
-              ' product price',
+              'Price',
               style: GoogleFonts.lato(
                 textStyle: const TextStyle(
                   fontSize: 14,
@@ -217,7 +217,7 @@ class _SellScreenState extends State<SellScreen> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.only(left: 10),
-                  hintText: 'Place holder',
+                  hintText: 'Price',
                   border: InputBorder.none,
                 ),
               ),
@@ -257,7 +257,7 @@ class _SellScreenState extends State<SellScreen> {
                 width: double.maxFinite,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () =>null,
+                  onPressed: () =>readDetails(),
                   child: const Text(
                     'Upload',
                     style: TextStyle(
