@@ -382,7 +382,7 @@ class MapScreenState extends State<ProfileScreen>
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
-                                child:  Container(
+                                child: Container(
                                   child: const Text(
                                     'Password',
                                     style: TextStyle(
@@ -464,7 +464,15 @@ class MapScreenState extends State<ProfileScreen>
                     textStyle: MaterialStateProperty.all(
                         const TextStyle(color: Colors.white))),
                 onPressed: () {
-                  CreateUser(name_controller.text, ph_no_controller.text);
+                  Username = name_controller.text;
+                  phone_num = ph_no_controller.text;
+                  CreateUser(
+                      name_controller.text.isEmpty
+                          ? Username
+                          : name_controller.text,
+                      ph_no_controller.text.isEmpty
+                          ? phone_num
+                          : ph_no_controller.text);
                   setState(() {
                     _status = true;
                     FocusScope.of(context).requestFocus(FocusNode());
