@@ -28,10 +28,10 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                   padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 10),
+                      contentPadding: const EdgeInsets.only(left: 10),
                       hintText: 'Search orders',
                       filled: true,
-                      fillColor: Color(0xffF4F4F4),
+                      fillColor:const Color(0xffF4F4F4),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                         borderSide: BorderSide.none,
