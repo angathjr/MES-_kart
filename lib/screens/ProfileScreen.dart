@@ -26,7 +26,7 @@ class MapScreenState extends State<ProfileScreen>
   final name_controller = TextEditingController();
   final ph_no_controller = TextEditingController();
   final email_controller = TextEditingController();
-  bool _is_dp_exist = true;
+  bool _is_dp_exist = false;
   bool _status = true;
   bool start = false;
   final FocusNode myFocusNode = FocusNode();
@@ -64,6 +64,7 @@ class MapScreenState extends State<ProfileScreen>
           .ref('/Profile_pictures')
           .child('${auth.currentUser!.uid}.jpg');
       profile_pic = await dp.getDownloadURL();
+      _is_dp_exist=true;
       setState(() {});
     } on Exception catch (e) {
       _is_dp_exist = false;
@@ -129,9 +130,11 @@ class MapScreenState extends State<ProfileScreen>
                                         width: 140,
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
+
                                             image: DecorationImage(
                                                 image:
-                                                    NetworkImage(profile_pic))),
+                                                    NetworkImage(profile_pic))
+                                        ),
                                       )
                                     : Container(
                                         height: 140,
