@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-String Username = "gig";
-String phone_num = "hkguyyu";
+String Username = "";
+String phone_num = "";
 String Email_add = "";
 FirebaseAuth auth = FirebaseAuth.instance;
 final CollectionReference users =
