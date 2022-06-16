@@ -51,7 +51,8 @@ flutter_icons:
   android: true
   ios: true
   image_path: "lib/images/logo.png"
-
+dependency_overrides:
+  image_picker_android: 0.8.4+13
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
