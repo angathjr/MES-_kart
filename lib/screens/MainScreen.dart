@@ -18,11 +18,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final pages = [
-    const HomeScreen(),
-    const MyOrderScreen(),
-     SellScreen(),
-    ProfileScreen()
+  final pages =  [
+     HomeScreen(),
+     MyOrderScreen(),
+      SellScreen(),
+     ProfileScreen()
   ];
 
   @override
@@ -31,12 +31,12 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
 
       resizeToAvoidBottomInset: false,
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar:const  BottomNavigation(),
       body: SafeArea(
           child: ValueListenableBuilder(
         valueListenable: MainScreen.indexnotify,
         builder: (BuildContext context, int updatedindex, _) {
-          print(MainScreen.indexnotify.value);
+       //   print(MainScreen.indexnotify.value);
           return pages[updatedindex];
         },
       )),

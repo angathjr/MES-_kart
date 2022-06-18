@@ -81,6 +81,7 @@ class MapScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -469,7 +470,7 @@ class MapScreenState extends State<ProfileScreen>
                 onPressed: () {
                   Username = name_controller.text;
                   phone_num = ph_no_controller.text;
-                  CreateUser(
+                  UpdateUser(
                       name_controller.text.isEmpty
                           ? Username
                           : name_controller.text,

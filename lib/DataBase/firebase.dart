@@ -21,6 +21,16 @@ Future CreateUser(String name, String phone_no) async {
     'Email_address': auth.currentUser!.email,
     'mobile_Number': phone_no,
   };
+  await docuser.set(details);
+}
+Future UpdateUser(String name, String phone_no) async {
+  final docuser =
+  FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid);
+  final details = {
+    'name': name,
+    'Email_address': auth.currentUser!.email,
+    'mobile_Number': phone_no,
+  };
   await docuser.update(details);
 }
 
